@@ -1,0 +1,13 @@
+---
+# Which version of WordPress to deploy
+wp_version: 4.7.2
+wp_sha1sum: 7b687f1af589c337124e6247229af209ec1d52c3
+
+# These are the WordPress database settings
+wp_db_name: wordpress 
+wp_db_user: wordpress
+wp_db_password: Rh37Clt2017
+
+wp_admin_username: admin
+wp_admin_password: admin123 
+wp_admin_email: clt2017-wp.demo@mschade.de

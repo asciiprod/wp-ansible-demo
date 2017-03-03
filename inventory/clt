@@ -1,0 +1,6 @@
+[clt]
+mac.mschade.de
+
+[clt:vars]
+ansible_ssh_private_key_file=~/.ssh/id_ansible
+

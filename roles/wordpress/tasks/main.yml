@@ -1,0 +1,41 @@
+---
+- name: Download WordPress
+  get_url: 
+    url: "http://wordpress.org/wordpress-{{ wp_version }}.tar.gz"
+    dest: "/srv/wordpress-{{ wp_version }}.tar.gz"
+    checksum: "sha1:{{ wp_sha1sum }}"
+
+- name: Extract archive
+  unarchive: 
+    src: "/srv/wordpress-{{ wp_version }}.tar.gz"
+    dest: /srv
+    remote_src: True
+
+- name: Add group "wordpress"
+  group: name=wordpress
+
+- name: Add user "wordpress"
+  user: name=wordpress group=wordpress home=/srv/wordpress/
+
+- name: Fetch random salts for WordPress config
+  uri:
+    url: https://api.wordpress.org/secret-key/1.1/salt/
+    return_content: yes
+  register: "wp_salt"
+
+- name: Create WordPress database
+  mysql_db: name={{ wp_db_name }} state=present
+
+- name: Create WordPress database user
+  mysql_user: name={{ wp_db_user }} password={{ wp_db_password }} priv={{ wp_db_name }}.*:ALL host='localhost' state=present
+
+- name: Copy WordPress config file
+  template: src=wp-config.php dest=/srv/wordpress/
+
+- name: Change ownership of WordPress installation
+  file: path=/srv/wordpress/ owner=wordpress group=wordpress state=directory recurse=yes
+
+#- name: Finish installation
+#  uri:
+#    url: "http://{{ wp_domain }}/wp-admin/install.php?step=2&weblog_title={{ wp_domain }}&user_name={{ wp_admin_username }}&admin_email={{ wp_admin_email }}&admin_password={{ wp_admin_password }}&admin_password2=={{ wp_admin_password }}&pw_weak=1"
+

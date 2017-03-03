@@ -1,0 +1,8 @@
+---
+- hosts: clt
+  roles:
+    - common
+    - mysql
+    - apache
+    - php-fpm
+    - wordpress

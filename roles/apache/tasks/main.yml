@@ -1,0 +1,21 @@
+---
+- name: install apache packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: no
+  with_items:
+    - apache2
+    - libapache2-mod-php5
+
+- name: enable apache modules
+  apache2_modules:
+    state: present
+    name: "{{ item }}"
+   with_items:
+   - rewrite
+   - vhost_alias
+
+- name: copy config for wordpress
+  template: src=default.conf dest=/etc/apache2/sites-available/wordpress.conf
+  notify: restart apache2

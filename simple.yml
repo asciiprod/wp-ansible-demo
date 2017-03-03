@@ -1,0 +1,10 @@
+---
+- hosts: clt
+  tasks:
+    - name: install required packages
+      apt:
+        name: "{{ item }}"
+        state: present
+        install_recommends: no
+      with_items:
+        - apache2
