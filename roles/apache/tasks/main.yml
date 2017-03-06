@@ -7,15 +7,28 @@
   with_items:
     - apache2
     - libapache2-mod-php5
+    - php5-mysql
+    - php5-curl
+    - php5-gd
 
 - name: enable apache modules
-  apache2_modules:
+  apache2_module:
     state: present
     name: "{{ item }}"
-   with_items:
-   - rewrite
-   - vhost_alias
+  with_items:
+    - rewrite
 
 - name: copy config for wordpress
   template: src=default.conf dest=/etc/apache2/sites-available/wordpress.conf
+
+- name: disable default site
+  command: a2dissite 000-default
   notify: restart apache2
+
+- name: enable wordpress site
+  command: a2ensite wordpress
+  notify: restart apache2
+
+- name: restart apache now
+  meta: flush_handlers
+

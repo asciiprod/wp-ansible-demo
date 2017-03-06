@@ -1,0 +1,7 @@
+- name: Update apt cache and system
+  apt: 
+    upgrade: dist
+    update_cache: yes 
+    cache_valid_time: 3600
+    dpkg_options: 'force-confold,force-confdef'
+
