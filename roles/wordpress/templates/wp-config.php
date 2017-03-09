@@ -47,7 +47,7 @@ define('DB_COLLATE', '');
  * @since 2.6.0
  */
 
-{{ wp_salt.content }}
+{{ vars['wp_salt'].content }}
 
 /**#@-*/
 
