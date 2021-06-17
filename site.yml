@@ -1,5 +1,5 @@
 ---
-- hosts: clt
+- hosts: wpdemo
   roles:
     - common
     - mysql
