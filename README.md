@@ -1,6 +1,6 @@
-# CLT 2017 Ansible Demo
+# WordPress Ansible Demo
 
-this playbook installs WordPress on a Debian 8 ("jessie") minimal installation
+this playbook installs WordPress on a Debian 10 ("buster") minimal installation
 
 ## Usage
 
@@ -10,5 +10,6 @@ this playbook installs WordPress on a Debian 8 ("jessie") minimal installation
 
 ## Parameters
 
-Hosts can be configured in the inventory/ directory.
-Variables (username, password, etc) are in the group_vars directory.
+- Hosts can be configured in the inventory/ directory.
+- HostsVariables (username, password, etc) are in the group_vars directory.
+- Inventory path can be configured in the ansible.cfg file.

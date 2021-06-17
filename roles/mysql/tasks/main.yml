@@ -1,8 +1,5 @@
 - name: install mysql server
   apt:
-    name: "{{ item }}"
+    name: ['mariadb-server', 'python3-mysqldb', 'python-mysqldb'] 
     state: present
     install_recommends: no
-  with_items:
-    - mariadb-server
-    - python-mysqldb

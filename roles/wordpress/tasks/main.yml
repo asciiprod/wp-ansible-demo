@@ -30,6 +30,7 @@
   mysql_db: name={{ wp_db_name }} state=present
 
 - name: Create WordPress database user
+  no_log: true
   mysql_user: name={{ wp_db_user }} password={{ wp_db_password }} priv={{ wp_db_name }}.*:ALL host='localhost' state=present
 
 - name: Copy WordPress config file

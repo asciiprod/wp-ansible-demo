@@ -1,15 +1,9 @@
 ---
 - name: install apache packages
   apt:
-    name: "{{ item }}"
+    name: ['apache2', 'libapache2-mod-php', 'php-mysql', 'php-curl', 'php-gd']
     state: present
     install_recommends: no
-  with_items:
-    - apache2
-    - libapache2-mod-php5
-    - php5-mysql
-    - php5-curl
-    - php5-gd
 
 - name: enable apache modules
   apache2_module:
