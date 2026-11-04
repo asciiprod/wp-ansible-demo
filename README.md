@@ -1,6 +1,6 @@
 # WordPress Ansible Demo
 
-this playbook installs WordPress on a Debian 10 ("buster") minimal installation
+this playbook installs WordPress on a Debian 13 ("trixie") minimal installation
 
 ## Usage
 
